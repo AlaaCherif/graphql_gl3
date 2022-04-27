@@ -11,15 +11,16 @@ export const Mutation = {
   addTodo: (parent, { addTodoInput }, { pubsub }) => {
     if (!exist(db.users, 'id', addTodoInput.userId)) {
       console.log('inexistant user');
-      const newTodo = {
-        id: v4(),
-        status: 'WAITING',
-        ...addTodoInput,
-      };
-      db.todos.push(newTodo);
-      pubsub.publish('todo', { todo: { todo: newTodo, mutation: 'ADD' } });
-      return newTodo;
     }
+    const newTodo = {
+      id: v4(),
+      status: 'WAITING',
+      ...addTodoInput,
+    };
+    console.log('test');
+    db.todos.push(newTodo);
+    pubsub.publish('todo', { todo: { todo: newTodo, mutation: 'ADD' } });
+    return newTodo;
   },
   updateTodo: (parent, { id, updateTodoInput }, { pubsub }) => {
     if (
