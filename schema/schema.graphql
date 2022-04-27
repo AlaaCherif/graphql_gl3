@@ -76,3 +76,15 @@ enum TodoStatusEnum {
   CANCLED
   DONE
 }
+type Subscription {
+  todo: TodoSubscriptioPayload!
+}
+type TodoSubscriptioPayload {
+  todo: Todo!
+  mutation: MutationOperationType!
+}
+enum MutationOperationType {
+  updated
+  deleted
+  added
+}
